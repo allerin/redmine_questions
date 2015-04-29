@@ -80,7 +80,11 @@
   </div>
   <% end %>
   <div class="reply-details <%= 'use-avatar' unless message_avatar.blank? %>">
-    <h4 class="author"><%= authoring message.created_on, message.author %></h4>
+    <h4 class="author">
+      <%= link_to h(message.subject), { :controller => 'messages', :action => 'show', :board_id => @board, :id => @topic, :r => message, :anchor => "message-#{message.id}" } %>
+      -
+      <%= authoring message.created_on, message.author %>
+    </h4>
     <div class="wiki"><%= textilizable message, :content, :attachments => message.attachments %></div>
     <%= link_to_attachments message, :author => false %>
   </div>
